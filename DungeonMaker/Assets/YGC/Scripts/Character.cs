@@ -2,39 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace YGC
+public class Character : MonoBehaviour
 {
-    public class Character : MonoBehaviour
+    public Transform generator;
+
+
+
+    // Start is called before the first frame update
+    void Start()
     {
-        public DungeonGenerator generator;
+        transform.SetParent(generator.transform);
+    }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collsion Detect");
 
+        ChangeLayer(collision.collider.transform.parent.parent, "MinimapVisible");
+    }
 
-        // Start is called before the first frame update
-        void Start()
+    public void ChangeLayer(Transform trans, string name)
+    {
+        ChangeLayersRecursively(trans, name);
+    }
+
+    public void ChangeLayersRecursively(Transform trans, string name)
+    {
+        trans.gameObject.layer = LayerMask.NameToLayer(name);
+        foreach (Transform child in trans)
         {
-            transform.SetParent(generator.transform);
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            Debug.Log("Collsion Detect");
-
-            ChangeLayer(collision.collider.transform.parent.parent, "MinimapVisible");
-        }
-
-        public void ChangeLayer(Transform trans, string name)
-        {
-            ChangeLayersRecursively(trans, name);
-        }
-
-        public void ChangeLayersRecursively(Transform trans, string name)
-        {
-            trans.gameObject.layer = LayerMask.NameToLayer(name);
-            foreach (Transform child in trans)
-            {
-                ChangeLayersRecursively(child, name);
-            }
+            ChangeLayersRecursively(child, name);
         }
     }
 }
