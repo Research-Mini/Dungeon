@@ -16,7 +16,9 @@ public class EnemyAI : MonoBehaviour
     const string WALK = "Walk";
 
     private Animator animator;
-    private string currentState;
+    public string currentState;
+
+    public AudioSource awakeSound;
 
     // Start is called before the first frame update
     public Transform player;
@@ -31,7 +33,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
     {
-        agent = GetComponentInParent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
+        awakeSound = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -114,9 +117,9 @@ public class EnemyAI : MonoBehaviour
 
     void LookTo(Vector3 targetPosition)
     {
-        Vector3 directionToPosition = Vector3.Normalize(targetPosition - transform.parent.position);
+        Vector3 directionToPosition = Vector3.Normalize(targetPosition - transform.position);
         directionToPosition.y = 0;
-        transform.parent.forward = directionToPosition;
+        transform.forward = directionToPosition;
     }
 
     private void OnDrawGizmos()
@@ -131,6 +134,8 @@ public class EnemyAI : MonoBehaviour
         {
             isDetected = true;
             player = other.gameObject.transform;
+            currentState = RUN;
+            awakeSound.enabled = true;
         }
     }
 
