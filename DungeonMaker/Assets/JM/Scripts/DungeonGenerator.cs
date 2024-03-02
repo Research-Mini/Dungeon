@@ -38,16 +38,39 @@ public class DungeonGenerator : MonoBehaviour
     public int lastVisitedCellIndex = -1;
     List<Cell> board;
 
+    public GameObject enemyObj;
+    public int totalEnemy = 0;
+    private List<GameObject> total_Rooms = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
         MazeGenerator();
+        GenerateEnemy();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void GenerateEnemy()
+    {
+        List<int> enemyPosList = new List<int>();
+
+        while (enemyPosList.Count != totalEnemy)
+        {
+            int enemyPos = Random.Range(0, total_Rooms.Count);
+
+            if (!enemyPosList.Contains(enemyPos))
+            {
+                enemyPosList.Add(enemyPos);
+                var newEnemy = Instantiate(enemyObj);
+                newEnemy.SetActive(true);
+                newEnemy.transform.SetParent(total_Rooms[enemyPos].transform);
+                newEnemy.transform.localPosition = Vector3.zero;
+            }
+        }
     }
 
     void GenerateDungeon()
@@ -59,27 +82,27 @@ public class DungeonGenerator : MonoBehaviour
                 Cell currentCell = board[i + j * size.x];
                 if (currentCell.visited)
                 {
-                    int roomIndex;
-                    if (i + j * size.x == lastVisitedCellIndex)
+
+                    int roomIndex = 0;
+
+                    if (i + j * size.x == board.Count - 1)
                     {
-                        // 마지막 방문한 셀의 위치에 room3 객체를 생성합니다.
-                        // room3가 rooms 배열에서 몇 번째 인덱스에 위치하는지 알아야 합니다.
-                        // 예를 들어, room3가 rooms 배열의 세 번째 요소라고 가정합니다.
-                        roomIndex = 2; // rooms 배열에서 room3의 인덱스
+                        roomIndex = rooms.Length - 1;
+                        // rooms 배열에서 마지막 인덱스 (room3) 설정
                     }
                     else
                     {
-                        // 기존 로직으로 방을 선택합니다.
+
                         List<int> availableRooms = new List<int>();
                         for (int k = 0; k < rooms.Length; k++)
                         {
                             int probability = rooms[k].ProbabilityOfSpawning(i, j);
-                            if (probability == 2) // 필수 방
+                            if (probability == 2)
                             {
                                 roomIndex = k;
                                 break;
                             }
-                            else if (probability == 1) // 선택 가능한 방
+                            else if (probability == 1)
                             {
                                 availableRooms.Add(k);
                             }
@@ -99,11 +122,14 @@ public class DungeonGenerator : MonoBehaviour
                     var newRoom = Instantiate(rooms[roomIndex].room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
                     newRoom.UpdateRoom(currentCell.status);
                     newRoom.name += " " + i + "-" + j;
+
+                    // 맨 첫칸은 NPC 있어서 적 안 생기게 함.
+                    if (!rooms[roomIndex].obligatory)
+                        total_Rooms.Add(newRoom.gameObject);
                 }
             }
         }
     }
-
     void MazeGenerator()
     {
         board = new List<Cell>();
@@ -120,7 +146,7 @@ public class DungeonGenerator : MonoBehaviour
 
         int k=0;
 
-        while(k<36)
+        while(k<1000)
         {
             k++;
             

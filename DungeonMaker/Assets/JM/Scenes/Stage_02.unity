@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &121451130 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5509986342491058511, guid: 0ef772f0bafdc204daa7df6863d3c281,
+    type: 3}
+  m_PrefabInstance: {fileID: 1901396661}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +435,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
@@ -702,7 +708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad58516046fabf14eb20e121e202b745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 6, y: 6}
+  size: {x: 6, y: 10}
   startPos: 0
   rooms:
   - room: {fileID: 4902167292745504913, guid: cb22d171481907245812e6682f6810b8, type: 3}
@@ -710,19 +716,22 @@ MonoBehaviour:
     maxPosition: {x: 0, y: 0}
     obligatory: 1
   - room: {fileID: 4902167292745504913, guid: 43e0a206391933c4f89af4a682d239bc, type: 3}
-    minPosition: {x: 0, y: 0}
-    maxPosition: {x: 3, y: 3}
+    minPosition: {x: 0, y: 3}
+    maxPosition: {x: 3, y: 6}
     obligatory: 0
   - room: {fileID: 4902167292745504913, guid: 720e36a89c299004d9ab807ff629cc14, type: 3}
-    minPosition: {x: 2, y: 2}
-    maxPosition: {x: 5, y: 5}
+    minPosition: {x: 3, y: 5}
+    maxPosition: {x: 6, y: 10}
     obligatory: 0
   - room: {fileID: 4902167292745504913, guid: 215c0b368e0df34419dfbdc7ba6beb0f, type: 3}
-    minPosition: {x: 5, y: 5}
-    maxPosition: {x: 6, y: 6}
+    minPosition: {x: 5, y: 9}
+    maxPosition: {x: 6, y: 10}
     obligatory: 0
   offset: {x: 12, y: 12}
   lastVisitedCellIndex: -1
+  enemyObj: {fileID: 8079888115774039932, guid: 6442caf49a26f224495d76eccc916c35,
+    type: 3}
+  totalEnemy: 8
 --- !u!4 &1621616264
 Transform:
   m_ObjectHideFlags: 0
@@ -873,6 +882,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DogPolyart
       objectReference: {fileID: 0}
+    - target: {fileID: 2605782652448087408, guid: 0ef772f0bafdc204daa7df6863d3c281,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3352588147483137228, guid: 0ef772f0bafdc204daa7df6863d3c281,
         type: 3}
       propertyPath: generator
@@ -893,6 +907,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 7500673664855118742, guid: 0ef772f0bafdc204daa7df6863d3c281,
+        type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 121451130}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

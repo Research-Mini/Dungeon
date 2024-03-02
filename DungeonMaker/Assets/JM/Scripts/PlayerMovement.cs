@@ -6,35 +6,65 @@ namespace jm
 {
     public class PlayerController : MonoBehaviour
     {
-        public float speed = 5.0f;
-        public float rotationSpeed = 200.0f;
+        public float speed = 5.0f; 
+        public float rotationSpeed = 200.0f; 
+        public Transform cameraTransform; 
+        public float maxViewAngle = 60.0f; 
 
         private Animator animator;
+        private Rigidbody rb; 
+        private float verticalLookRotation = 0;
 
         void Start()
         {
-            animator = GetComponent<Animator>();
+            animator = GetComponent<Animator>(); 
+            rb = GetComponent<Rigidbody>(); 
+            Cursor.lockState = CursorLockMode.Locked;
+
+           
         }
 
         void Update()
         {
-            //WASD 이동
-            float horizontal = Input.GetAxis("Horizontal") * Time.deltaTime;
-            float vertical = Input.GetAxis("Vertical") * Time.deltaTime;
-
-            //Shift키 확인
-            bool isRunning = Input.GetKey(KeyCode.LeftShift);
-
-            //이동 속도 조절
-            float currentSpeed = isRunning ? speed * 2 : speed;
-            transform.Translate(horizontal * currentSpeed, 0, vertical * currentSpeed);
-
-            //마우스 좌우회전
             float mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
             transform.Rotate(0, mouseX, 0);
 
-            //애니메이션 재생
-            if (horizontal != 0 || vertical != 0)
+            float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
+            verticalLookRotation += mouseY; 
+            verticalLookRotation = Mathf.Clamp(verticalLookRotation, -maxViewAngle, maxViewAngle);
+            cameraTransform.localEulerAngles = Vector3.left * verticalLookRotation;
+
+            HandleAnimation();
+        }
+
+        void FixedUpdate()
+        {
+            FreezeRotation();
+            HandleMovement();
+        }
+
+        void FreezeRotation()
+        {
+            rb.angularVelocity = Vector3.zero;
+        }
+        void HandleMovement()
+        {
+            float horizontal = Input.GetAxis("Horizontal") * speed;
+            float vertical = Input.GetAxis("Vertical") * speed;
+
+            bool isRunning = Input.GetKey(KeyCode.LeftShift);
+            Vector3 movementDirection = new Vector3(horizontal, 0, vertical).normalized;
+            Vector3 movement = transform.TransformDirection(movementDirection) * (isRunning ? speed * 2 : speed) * Time.fixedDeltaTime;
+
+            rb.MovePosition(rb.position + movement);
+        }
+
+        void HandleAnimation()
+        {
+            bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
+            bool isRunning = Input.GetKey(KeyCode.LeftShift);
+
+            if (isMoving)
             {
                 if (isRunning)
                 {
