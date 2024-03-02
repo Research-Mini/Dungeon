@@ -43,17 +43,41 @@ namespace YGC
         public Rule[] rooms;
         public Vector2 offset;
 
+        public GameObject enemyObj;
+        public int totalEnemy = 0;
+        private List<GameObject> total_Rooms = new List<GameObject>();
+
         // Start is called before the first frame update
         void Start()
         {
             MazeGenerator();
             GenerateDungeon();
+            GenerateEnemy();
         }
 
         // Update is called once per frame
         void Update()
         {
 
+        }
+
+        void GenerateEnemy()
+        {
+            List<int> enemyPosList = new List<int>();
+
+            while(enemyPosList.Count != totalEnemy)
+            {
+                int enemyPos = Random.Range(0, total_Rooms.Count);
+
+                if(!enemyPosList.Contains(enemyPos))
+                {
+                    enemyPosList.Add(enemyPos);
+                    var newEnemy = Instantiate(enemyObj);
+                    newEnemy.SetActive(true);
+                    newEnemy.transform.SetParent(total_Rooms[enemyPos].transform);
+                    newEnemy.transform.localPosition = Vector3.zero;
+                }
+            }
         }
 
         void GenerateDungeon()
@@ -100,6 +124,10 @@ namespace YGC
                         newRoom.UpdateRoom(board[(i + j * size.x)].status);
 
                         newRoom.name += " " + i + "-" + j;
+
+                        // 맨 첫칸은 NPC 있어서 적 안 생기게 함.
+                        if(!rooms[randomRoom].obligatory)
+                        total_Rooms.Add(newRoom.gameObject);
                     };
                 }
             }
