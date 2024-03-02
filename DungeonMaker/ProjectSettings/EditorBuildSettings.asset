@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/YGC/Scenes/MainScene.unity
     guid: fb82c6348c42975498940e200291ed45
   - enabled: 1
-    path: Assets/YGC/Scenes/YGC_Scene.unity
+    path: Assets/YGC/Scenes/Stage_01.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/JM/Scenes/SampleScene.unity
