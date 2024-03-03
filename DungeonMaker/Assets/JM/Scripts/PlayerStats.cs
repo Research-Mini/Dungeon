@@ -74,10 +74,12 @@ public class PlayerStats : MonoBehaviour
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        
+    {        
         if (HealthUI.instance != null)
         {
+            // 씬 넘어갔을 때 갑자기 체력바 달라지는 이슈 수정
+            Debug.Log("max : " + maxHealth);
+            currentHealth = maxHealth;
             HealthUI.instance.SetMaxHealth(maxHealth);
             HealthUI.instance.UpdateHealth(currentHealth);
         }

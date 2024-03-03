@@ -49,6 +49,7 @@ public class HealthUI : MonoBehaviour
     {
         if (healthSlider != null)
         {
+            Debug.Log(currentHealth);
             healthSlider.value = currentHealth;
         }
     }

@@ -37,6 +37,8 @@ public class Character : MonoBehaviour
 
     public void ChangeLayer(Transform trans, string name)
     {
+        if (trans.parent != generator)
+            trans = trans.parent;
         ChangeLayersRecursively(trans, name);
     }
 

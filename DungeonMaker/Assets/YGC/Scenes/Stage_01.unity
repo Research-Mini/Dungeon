@@ -578,11 +578,11 @@ MonoBehaviour:
     obligatory: 1
   - room: {fileID: 8998051165614161617, guid: 209284e89cc3642419291c064c1f2c5d, type: 3}
     minPosition: {x: 1, y: 1}
-    maxPosition: {x: 5, y: 5}
+    maxPosition: {x: 4, y: 4}
     obligatory: 0
   - room: {fileID: 8998051165614161617, guid: 7a643c9f555824b49b4472735af36dda, type: 3}
     minPosition: {x: 2, y: 2}
-    maxPosition: {x: 6, y: 6}
+    maxPosition: {x: 5, y: 5}
     obligatory: 0
   offset: {x: 6, y: 6}
   enemyObj: {fileID: 6632196935520816322, guid: c9b737cc041a87249adad5576601dc72,
