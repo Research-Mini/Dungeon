@@ -136,6 +136,7 @@ public class EnemyAI : MonoBehaviour
             player = other.gameObject.transform;
             currentState = RUN;
             awakeSound.enabled = true;
+            //문 가져오기
         }
     }
 
