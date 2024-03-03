@@ -123,12 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &121451130 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5509986342491058511, guid: 0ef772f0bafdc204daa7df6863d3c281,
-    type: 3}
-  m_PrefabInstance: {fileID: 1901396661}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,62 +378,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
---- !u!1 &770790839 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2605782652448087408, guid: 0ef772f0bafdc204daa7df6863d3c281,
-    type: 3}
-  m_PrefabInstance: {fileID: 1901396661}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &770790843
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 770790839}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2938109
-  m_Height: 1.4229921
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.5951082, z: -0.00923121}
---- !u!54 &770790844
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 770790839}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
 --- !u!1 &1214562295
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,48 +820,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: DogPolyart
       objectReference: {fileID: 0}
-    - target: {fileID: 2605782652448087408, guid: 0ef772f0bafdc204daa7df6863d3c281,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 3352588147483137228, guid: 0ef772f0bafdc204daa7df6863d3c281,
         type: 3}
       propertyPath: generator
       value: 
       objectReference: {fileID: 1621616264}
-    - target: {fileID: 5509986342491058511, guid: 0ef772f0bafdc204daa7df6863d3c281,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9914449
-      objectReference: {fileID: 0}
-    - target: {fileID: 5509986342491058511, guid: 0ef772f0bafdc204daa7df6863d3c281,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.13052616
-      objectReference: {fileID: 0}
-    - target: {fileID: 5509986342491058511, guid: 0ef772f0bafdc204daa7df6863d3c281,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7500673664855118742, guid: 0ef772f0bafdc204daa7df6863d3c281,
-        type: 3}
-      propertyPath: cameraTransform
-      value: 
-      objectReference: {fileID: 121451130}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2605782652448087408, guid: 0ef772f0bafdc204daa7df6863d3c281,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 770790843}
-    - targetCorrespondingSourceObject: {fileID: 2605782652448087408, guid: 0ef772f0bafdc204daa7df6863d3c281,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 770790844}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ef772f0bafdc204daa7df6863d3c281, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
