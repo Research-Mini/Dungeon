@@ -74,11 +74,16 @@ public class PlayerStats : MonoBehaviour
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        
+    {        
         if (HealthUI.instance != null)
         {
+            // 씬 넘어갔을 때 갑자기 체력바 달라지는 이슈 수정
+            currentHealth = maxHealth;
+
+            // 아래의 이 함수가 작동을 안 함.
+            // slider를 못찾는 것으로 보여서 찾는 구문 추가.
             HealthUI.instance.SetMaxHealth(maxHealth);
+
             HealthUI.instance.UpdateHealth(currentHealth);
         }
     }
