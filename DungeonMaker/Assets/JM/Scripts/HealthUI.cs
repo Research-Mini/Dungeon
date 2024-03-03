@@ -38,11 +38,12 @@ public class HealthUI : MonoBehaviour
 
     public void SetMaxHealth(int maxHealth)
     {
-        if (healthSlider != null)
-        {
-            healthSlider.maxValue = maxHealth;
-            healthSlider.value = maxHealth;
-        }
+        // 못 찾았다면 다시 찾도록!
+        if(healthSlider == null)
+            healthSlider = GameObject.Find("HealthSlider").GetComponent<Slider>();
+
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = maxHealth;
     }
 
     public void UpdateHealth(int currentHealth)
