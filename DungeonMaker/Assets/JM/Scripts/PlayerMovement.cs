@@ -7,13 +7,15 @@ namespace jm
     public class PlayerController : MonoBehaviour
     {
         public float speed = 5.0f; 
-        public float rotationSpeed = 200.0f; 
+        public float rotationSpeed = 200.0f;
+        public float jumpForce = 5.0f;
         public Transform cameraTransform; 
         public float maxViewAngle = 60.0f; 
 
         private Animator animator;
         private Rigidbody rb; 
         private float verticalLookRotation = 0;
+        private bool isGrounded;
 
         void Start()
         {
@@ -35,12 +37,18 @@ namespace jm
             cameraTransform.localEulerAngles = Vector3.left * verticalLookRotation;
 
             HandleAnimation();
+
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            }
         }
 
         void FixedUpdate()
         {
             FreezeRotation();
             HandleMovement();
+            CheckGroundStatus();
         }
 
         void FreezeRotation()
@@ -58,7 +66,18 @@ namespace jm
 
             rb.MovePosition(rb.position + movement);
         }
-
+        void CheckGroundStatus()
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, -Vector3.up, out hit, 1f))
+            {
+                isGrounded = true;
+            }
+            else
+            {
+                isGrounded = false;
+            }
+        }
         void HandleAnimation()
         {
             bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
