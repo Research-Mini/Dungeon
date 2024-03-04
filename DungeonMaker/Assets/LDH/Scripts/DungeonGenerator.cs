@@ -71,10 +71,7 @@ namespace LDH
                     newEnemy.SetActive(true);
                     newEnemy.transform.SetParent(total_Rooms[enemyPos].transform);
                     newEnemy.transform.localPosition = Vector3.zero;
-                    doorColliders.Add(total_Rooms[enemyPos].transform.Find("Entrances").Find("UpDoor").GetComponentInChildren<BoxCollider>());
-                    doorColliders.Add(total_Rooms[enemyPos].transform.Find("Entrances").Find("DownDoor").GetComponentInChildren<BoxCollider>());
-                    doorColliders.Add(total_Rooms[enemyPos].transform.Find("Entrances").Find("RightDoor").GetComponentInChildren<BoxCollider>());
-                    doorColliders.Add(total_Rooms[enemyPos].transform.Find("Entrances").Find("LeftDoor").GetComponentInChildren<BoxCollider>());
+                    
                     
                 }
             }
