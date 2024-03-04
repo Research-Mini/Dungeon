@@ -295,7 +295,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1323,7 +1323,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1974,6 +1974,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2232765730870333678}
     m_Modifications:
+    - target: {fileID: 2114445843273586482, guid: e348e7143b6247b488737e4be26fb038,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5239272197777735519, guid: e348e7143b6247b488737e4be26fb038,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2030,8 +2035,7 @@ PrefabInstance:
       value: Floor (5)
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 6458203094398920220, guid: e348e7143b6247b488737e4be26fb038, type: 3}
-    - {fileID: 2114445843273586482, guid: e348e7143b6247b488737e4be26fb038, type: 3}
+    - {fileID: 0}
     - {fileID: 461060367467320223, guid: e348e7143b6247b488737e4be26fb038, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2735,7 +2739,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -3171,7 +3175,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

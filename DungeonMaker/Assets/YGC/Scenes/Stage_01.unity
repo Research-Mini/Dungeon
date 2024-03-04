@@ -223,6 +223,11 @@ PrefabInstance:
       propertyPath: generator
       value: 
       objectReference: {fileID: 1381331858}
+    - target: {fileID: 3352588147483137228, guid: 0ef772f0bafdc204daa7df6863d3c281,
+        type: 3}
+      propertyPath: isIllGiTo
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6020550196182965360, guid: 0ef772f0bafdc204daa7df6863d3c281,
         type: 3}
       propertyPath: m_Height
@@ -233,10 +238,10 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.60443085
       objectReference: {fileID: 0}
-    - target: {fileID: 7937937974088053753, guid: 0ef772f0bafdc204daa7df6863d3c281,
+    - target: {fileID: 7306876070394430963, guid: 0ef772f0bafdc204daa7df6863d3c281,
         type: 3}
-      propertyPath: m_UseGravity
-      value: 0
+      propertyPath: m_CullingMask.m_Bits
+      value: 1911
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

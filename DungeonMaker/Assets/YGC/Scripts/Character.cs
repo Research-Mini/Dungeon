@@ -42,40 +42,50 @@ public class Character : MonoBehaviour
     {
         // if (!other.transform.parent.name.Contains("Room")) return;
         beforeRoom = other.transform.parent;
-        Debug.Log(beforeRoom.name);
+        // Debug.Log(beforeRoom.name);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (isIllGiTo)
         {
-            if(other.transform.parent.name == "Floor")
+            // 적은 일기토 방문 닫기에 관여해서는 안 됨.
+            if (other.name.Contains("Enemy")) return;
+
+            // Debug.Log(other.transform.parent.name + " / " + other.transform.parent.tag);
+            if (other.transform.parent.name.Contains("Room"))
+            {
+                
                 TryToIllGiTo(other.transform.parent);
-            else if(other.transform.parent.parent.name == "Floor")
+            }
+            else if (other.transform.parent.parent.name.Contains("Room"))
+            {
+                Debug.Log(other.name);
                 TryToIllGiTo(other.transform.parent.parent);
+            }
         }
     }
 
     // 일기토 - 방의 문 다 막기
     public void TryToIllGiTo(Transform trans)
     {
-        Debug.Log(trans.parent.name + " / " + trans.parent.tag);
-        if (trans.parent.tag != "EnemyRoom") return;        
+        // Debug.Log(trans.name + " / " + trans.tag);
+        if (trans.tag != "EnemyRoom") return;        
 
         // 지나갈 수 없음.
-        for (int i = 0; i < trans.parent.GetChild(2).childCount; i++)
+        for (int i = 0; i < trans.GetChild(2).childCount; i++)
         {
-            if (!trans.parent.GetChild(2).GetChild(i).name.Contains("Door")) continue;
+            if (!trans.GetChild(2).GetChild(i).name.Contains("Door")) continue;
 
-            if(trans.parent.GetChild(2).GetChild(i).TryGetComponent<BoxCollider>(out BoxCollider box))
+            if(trans.GetChild(2).GetChild(i).TryGetComponent<BoxCollider>(out BoxCollider box))
             {
                 box.enabled = true;
                 box.isTrigger = false;
             }
 
-            for(int j=0;j< trans.parent.GetChild(2).GetChild(i).childCount;j++)
+            for(int j=0;j< trans.GetChild(2).GetChild(i).childCount;j++)
             {
-                if(trans.parent.GetChild(2).GetChild(i).GetChild(j).TryGetComponent<BoxCollider>(out BoxCollider boxes))
+                if(trans.GetChild(2).GetChild(i).GetChild(j).TryGetComponent<BoxCollider>(out BoxCollider boxes))
                 {
                     boxes.enabled = true;
                     boxes.isTrigger = false;
@@ -83,9 +93,9 @@ public class Character : MonoBehaviour
             }            
         }
 
-        // if (beforeRoom == null) return;
-
-        // if (!beforeRoom.name.Contains("Room")) return;
+        if (beforeRoom == null) return;
+        // Debug.Log(beforeRoom.parent.name + " / " + beforeRoom.parent.tag);
+        if (!beforeRoom.parent.name.Contains("Room")) return;
         if (beforeRoom.parent.childCount > 1)
         {
             for (int i = 0; i < beforeRoom.parent.GetChild(2).childCount; i++)
