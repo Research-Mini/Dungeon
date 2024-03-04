@@ -51,6 +51,7 @@ namespace LDH
         void Start()
         {
             MazeGenerator();
+            GenerateDungeon();
             GenerateEnemy();
             
         }
@@ -69,16 +70,16 @@ namespace LDH
                     var newEnemy = Instantiate(enemyObj);
                     newEnemy.SetActive(true);
                     newEnemy.transform.SetParent(total_Rooms[enemyPos].transform);
-                    newEnemy.transform.localPosition = Vector3.zero;;
-                    /*doorColliders.Add(total_Rooms[enemyPos].transform.Find("Entrances").Find("UpDoor").GetComponentInChildren<Collider>());
-                    doorColliders.Add(total_Rooms[enemyPos].transform.Find("Entrances").Find("DownDoor").GetComponentInChildren<Collider>());
-                    doorColliders.Add(total_Rooms[enemyPos].transform.Find("Entrances").Find("RightDoor").GetComponentInChildren<Collider>());
-                    doorColliders.Add(total_Rooms[enemyPos].transform.Find("Entrances").Find("LeftDoor").GetComponentInChildren<Collider>());
-                    */
+                    newEnemy.transform.localPosition = Vector3.zero;
+                    doorColliders.Add(total_Rooms[enemyPos].transform.Find("Entrances").Find("UpDoor").GetComponentInChildren<BoxCollider>());
+                    doorColliders.Add(total_Rooms[enemyPos].transform.Find("Entrances").Find("DownDoor").GetComponentInChildren<BoxCollider>());
+                    doorColliders.Add(total_Rooms[enemyPos].transform.Find("Entrances").Find("RightDoor").GetComponentInChildren<BoxCollider>());
+                    doorColliders.Add(total_Rooms[enemyPos].transform.Find("Entrances").Find("LeftDoor").GetComponentInChildren<BoxCollider>());
+                    
                 }
             }
         }
-
+        /*
         void GenerateDungeon()
         {
             for (int i = 0; i < size.x; i++)
@@ -135,8 +136,60 @@ namespace LDH
                 }
             }
         }
+        */
 
+        void GenerateDungeon()
+        {
+            for (int i = 0; i < size.x; i++)
+            {
+                for (int j = 0; j < size.y; j++)
+                {
+                    Cell currentCell = board[(i + j * size.x)];
+                    if (currentCell.visited)
+                    {
+                        int randomRoom = -1;
 
+                        List<int> availableRooms = new List<int>();
+
+                        for (int k = 0; k < rooms.Length; k++)
+                        {
+                            int p = rooms[k].ProbabilityOfSpawning(i, j);
+
+                            if (p == 2)
+                            {
+                                randomRoom = k;
+                                break;
+                            }
+                            else if (p == 1)
+                            {
+                                availableRooms.Add(k);
+                            }
+                        }
+
+                        if (randomRoom == -1)
+                        {
+                            if (availableRooms.Count > 0)
+                            {
+                                randomRoom = availableRooms[Random.Range(0, availableRooms.Count)];
+                            }
+                            else
+                            {
+                                randomRoom = 0;
+                            }
+                        }
+
+                        var newRoom = Instantiate(rooms[randomRoom].room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
+                        newRoom.UpdateRoom(board[(i + j * size.x)].status);
+
+                        newRoom.name += " " + i + "-" + j;
+
+                        // 맨 첫칸은 NPC 있어서 적 안 생기게 함.
+                        if (!rooms[randomRoom].obligatory)
+                            total_Rooms.Add(newRoom.gameObject);
+                    };
+                }
+            }
+        }
 
         void MazeGenerator()
         {
@@ -223,7 +276,6 @@ namespace LDH
                 }
 
             }
-            GenerateDungeon();
         }
 
         List<int> CheckNeighbors(int cell)
