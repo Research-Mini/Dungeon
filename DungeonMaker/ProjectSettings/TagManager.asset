@@ -10,6 +10,7 @@ TagManager:
   - Aegis
   - EnemyRoom
   - PlayerBody
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,8 @@ public class Character : MonoBehaviour
 
     public DialogController dialog;
     public bool isIllGiTo = false;  // 방에서 몬스터와 일기토 하는지 여부
+    private List<BoxCollider> blockedEntrances = new List<BoxCollider>(); // 일기토로 인해 막힌 입구들.
+    private List<Transform> blockedRooms = new List<Transform>();
 
     Transform beforeRoom;           // 일기토 직전에 있었던 방
 
@@ -20,6 +22,10 @@ public class Character : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Debug.Log("Collsion Detect");
+
+        // Debug.Log(collision.gameObject.name);
+
+        if (collision.gameObject.tag == "Finish") return;
 
         if (collision.gameObject.tag == "NPC")
         {
@@ -40,60 +46,78 @@ public class Character : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        // if (!other.transform.parent.name.Contains("Room")) return;
-        beforeRoom = other.transform.parent;
-        Debug.Log(beforeRoom.name);
+        if (other.transform.parent.name.Contains("Room"))
+            beforeRoom = other.transform.parent;
+        else if (other.transform.parent.parent.name.Contains("Room"))
+            beforeRoom = other.transform.parent.parent;
+        // Debug.Log(beforeRoom.name);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (isIllGiTo)
         {
-            if(other.transform.parent.name == "Floor")
+            // 적은 일기토 방문 닫기에 관여해서는 안 됨.
+            if (other.name.Contains("Enemy")) return;
+
+            // Debug.Log(other.transform.parent.name + " / " + other.transform.parent.tag);
+            if (other.transform.parent.name.Contains("Room"))
+            {                
                 TryToIllGiTo(other.transform.parent);
-            else if(other.transform.parent.parent.name == "Floor")
+            }
+            else if (other.transform.parent.parent.name.Contains("Room"))
+            {
+                // Debug.Log(other.name);
                 TryToIllGiTo(other.transform.parent.parent);
+            }
         }
     }
 
     // 일기토 - 방의 문 다 막기
     public void TryToIllGiTo(Transform trans)
     {
-        Debug.Log(trans.parent.name + " / " + trans.parent.tag);
-        if (trans.parent.tag != "EnemyRoom") return;        
+        // Debug.Log(trans.name + " / " + trans.tag);
+        if (trans.tag != "EnemyRoom") return;        
 
         // 지나갈 수 없음.
-        for (int i = 0; i < trans.parent.GetChild(2).childCount; i++)
+        for (int i = 0; i < trans.GetChild(2).childCount; i++)
         {
-            if (!trans.parent.GetChild(2).GetChild(i).name.Contains("Door")) continue;
+            if (!trans.GetChild(2).GetChild(i).name.Contains("Door")) continue;
 
-            if(trans.parent.GetChild(2).GetChild(i).TryGetComponent<BoxCollider>(out BoxCollider box))
-            {
+            blockedRooms.Add(trans);
+
+            if (trans.GetChild(2).GetChild(i).TryGetComponent<BoxCollider>(out BoxCollider box))
+            {                
+                blockedEntrances.Add(box);
                 box.enabled = true;
                 box.isTrigger = false;
             }
 
-            for(int j=0;j< trans.parent.GetChild(2).GetChild(i).childCount;j++)
+            for(int j=0;j< trans.GetChild(2).GetChild(i).childCount;j++)
             {
-                if(trans.parent.GetChild(2).GetChild(i).GetChild(j).TryGetComponent<BoxCollider>(out BoxCollider boxes))
+                if(trans.GetChild(2).GetChild(i).GetChild(j).TryGetComponent<BoxCollider>(out BoxCollider boxes))
                 {
+                    blockedEntrances.Add(boxes);
                     boxes.enabled = true;
                     boxes.isTrigger = false;
                 }
             }            
         }
 
-        // if (beforeRoom == null) return;
-
-        // if (!beforeRoom.name.Contains("Room")) return;
+        if (beforeRoom == null) return;
+        // Debug.Log(beforeRoom.parent.name + " / " + beforeRoom.parent.tag);
+        if (!beforeRoom.parent.name.Contains("Room")) return;
         if (beforeRoom.parent.childCount > 1)
         {
             for (int i = 0; i < beforeRoom.parent.GetChild(2).childCount; i++)
             {
                 if (!beforeRoom.parent.GetChild(2).GetChild(i).name.Contains("Door")) continue;
 
+                blockedRooms.Add(beforeRoom.parent);
+
                 if (beforeRoom.parent.GetChild(2).GetChild(i).TryGetComponent<BoxCollider>(out BoxCollider box))
-                {
+                {                    
+                    blockedEntrances.Add(box);
                     box.enabled = true;
                     box.isTrigger = false;
                 }
@@ -102,12 +126,31 @@ public class Character : MonoBehaviour
                 {
                     if (beforeRoom.parent.GetChild(2).GetChild(i).GetChild(j).TryGetComponent<BoxCollider>(out BoxCollider boxes))
                     {
+                        blockedEntrances.Add(boxes);
                         boxes.enabled = true;
                         boxes.isTrigger = false;
                     }
                 }
             }
         }        
+    }
+
+    public void EndOfIllGiTo()
+    {
+        Debug.Log("EndOfIllGiTo");
+        for (int i = 0; i < blockedEntrances.Count; i++)
+        {
+            blockedEntrances[i].isTrigger = true;
+        }
+
+        blockedEntrances.Clear();
+
+        for (int i = 0; i < blockedRooms.Count; i++)
+        {
+            blockedRooms[i].tag = "Untagged";
+        }
+
+        blockedRooms.Clear();
     }
 
     public void ChangeLayer(Transform trans, string name)

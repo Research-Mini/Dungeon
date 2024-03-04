@@ -14,8 +14,10 @@ public class MonsterHealth : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth); // 체력바의 최대값 설정
     }
 
-    public void TakeDamage(int damage)
+    public bool TakeDamage(int damage)
     {
+        bool isMonsterDead = false;
+
         currentHealth -= damage;
         Debug.Log("mosterdamaged");
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // 체력이 0 이하로 떨어지지 않도록 함
@@ -24,7 +26,12 @@ public class MonsterHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             // 몬스터가 죽었을 때의 로직 처리
+            gameObject.SetActive(false);
             Debug.Log("Monster is dead!");
+
+            isMonsterDead = true;
         }
+
+        return isMonsterDead;
     }
 }

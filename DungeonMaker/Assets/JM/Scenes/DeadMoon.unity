@@ -3833,7 +3833,7 @@ PrefabInstance:
     - target: {fileID: 296300007308501574, guid: 0ef772f0bafdc204daa7df6863d3c281,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1272667913436510083, guid: 0ef772f0bafdc204daa7df6863d3c281,
         type: 3}
@@ -3844,6 +3844,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Radius
       value: 0.41926643
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272667913436510083, guid: 0ef772f0bafdc204daa7df6863d3c281,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1272667913436510083, guid: 0ef772f0bafdc204daa7df6863d3c281,
         type: 3}
@@ -3905,7 +3910,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3352588147483137228, guid: 0ef772f0bafdc204daa7df6863d3c281, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -17535,6 +17541,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4813087290497974081, guid: d58f75fb113c27547a53c234ed3844ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8508955289468920292, guid: d58f75fb113c27547a53c234ed3844ca,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -19825,6 +19836,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157433476574976132, guid: eb58e8f2831a51f45a44a261e6710cdd,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 173.16522
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157433476574976132, guid: eb58e8f2831a51f45a44a261e6710cdd,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 145.42767
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157433476574976132, guid: eb58e8f2831a51f45a44a261e6710cdd,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -34.93046
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157433476574976132, guid: eb58e8f2831a51f45a44a261e6710cdd,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 64.265945
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157433476574976132, guid: eb58e8f2831a51f45a44a261e6710cdd,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -1.2795684
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6598984650226490155, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}

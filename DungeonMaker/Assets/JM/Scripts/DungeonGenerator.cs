@@ -58,6 +58,8 @@ public class DungeonGenerator : MonoBehaviour
     {
         List<int> enemyPosList = new List<int>();
 
+        Transform camTrans = GameObject.Find("DogPolyart").GetComponent<jm.PlayerController>().cameraTransform;
+
         while (enemyPosList.Count != totalEnemy)
         {
             int enemyPos = Random.Range(0, total_Rooms.Count);
@@ -66,6 +68,9 @@ public class DungeonGenerator : MonoBehaviour
             {
                 enemyPosList.Add(enemyPos);
                 var newEnemy = Instantiate(enemyObj);
+
+                newEnemy.transform.GetComponent<MonsterHealth>().healthBar.transform.GetComponent<Billboard>().camTransform = camTrans;
+
                 newEnemy.SetActive(true);
                 newEnemy.transform.SetParent(total_Rooms[enemyPos].transform);
                 newEnemy.transform.localPosition = Vector3.zero;

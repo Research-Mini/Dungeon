@@ -67,7 +67,9 @@ namespace YGC
         {
             List<int> enemyPosList = new List<int>();
 
-            while(enemyPosList.Count != totalEnemy)
+            Transform camTrans = GameObject.Find("DogPolyart").GetComponent<jm.PlayerController>().cameraTransform;
+
+            while (enemyPosList.Count != totalEnemy)
             {
                 int enemyPos = Random.Range(0, total_Rooms.Count);
 
@@ -75,6 +77,9 @@ namespace YGC
                 {
                     enemyPosList.Add(enemyPos);
                     var newEnemy = Instantiate(enemyObj);
+
+                    newEnemy.transform.GetComponent<MonsterHealth>().healthBar.transform.GetComponent<Billboard>().camTransform = camTrans;
+
                     newEnemy.SetActive(true);
                     newEnemy.transform.SetParent(total_Rooms[enemyPos].transform);
 
