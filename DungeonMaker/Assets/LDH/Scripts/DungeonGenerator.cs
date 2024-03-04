@@ -40,17 +40,103 @@ namespace LDH
         public Rule[] rooms;
         public Vector2 offset;
 
+        public List<Collider> doorColliders = new List<Collider>();
+
         List<Cell> board;
+        public GameObject enemyObj;
+        public int totalEnemy = 0;
+        public List<GameObject> total_Rooms = new List<GameObject>();
 
         // Start is called before the first frame update
         void Start()
         {
             MazeGenerator();
+            GenerateDungeon();
+            GenerateEnemy();
+            
         }
+
+        void GenerateEnemy()
+        {
+            List<int> enemyPosList = new List<int>();
+
+            while (enemyPosList.Count != totalEnemy)
+            {
+                int enemyPos = Random.Range(0, total_Rooms.Count);
+
+                if (!enemyPosList.Contains(enemyPos))
+                {
+                    enemyPosList.Add(enemyPos);
+                    var newEnemy = Instantiate(enemyObj);
+                    newEnemy.SetActive(true);
+                    newEnemy.transform.SetParent(total_Rooms[enemyPos].transform);
+                    newEnemy.transform.localPosition = Vector3.zero;
+                    
+                    
+                }
+            }
+        }
+        /*
+        void GenerateDungeon()
+        {
+            for (int i = 0; i < size.x; i++)
+            {
+                for (int j = 0; j < size.y; j++)
+                {
+                    Cell currentCell = board[i + j * size.x];
+                    if (currentCell.visited)
+                    {
+
+                        int roomIndex = 0;
+
+                        if (i + j * size.x == board.Count - 1)
+                        {
+                            roomIndex = rooms.Length - 1;
+                            // rooms 배열에서 마지막 인덱스 (room3) 설정
+                        }
+                        else
+                        {
+
+                            List<int> availableRooms = new List<int>();
+                            for (int k = 0; k < rooms.Length; k++)
+                            {
+                                int probability = rooms[k].ProbabilityOfSpawning(i, j);
+                                if (probability == 2)
+                                {
+                                    roomIndex = k;
+                                    break;
+                                }
+                                else if (probability == 1)
+                                {
+                                    availableRooms.Add(k);
+                                }
+                            }
+
+                            if (availableRooms.Count > 0)
+                            {
+                                roomIndex = availableRooms[Random.Range(0, availableRooms.Count)];
+                            }
+                            else
+                            {
+                                // 선택할 수 있는 방이 없을 경우 기본 방을 선택
+                                roomIndex = 0; // 기본 방의 인덱스
+                            }
+                        }
+
+                        var newRoom = Instantiate(rooms[roomIndex].room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
+                        newRoom.UpdateRoom(currentCell.status);
+                        newRoom.name += " " + i + "-" + j;
+
+                        if (!rooms[roomIndex].obligatory)
+                            total_Rooms.Add(newRoom.gameObject);
+                    }
+                }
+            }
+        }
+        */
 
         void GenerateDungeon()
         {
-
             for (int i = 0; i < size.x; i++)
             {
                 for (int j = 0; j < size.y; j++)
@@ -59,6 +145,7 @@ namespace LDH
                     if (currentCell.visited)
                     {
                         int randomRoom = -1;
+
                         List<int> availableRooms = new List<int>();
 
                         for (int k = 0; k < rooms.Length; k++)
@@ -88,15 +175,17 @@ namespace LDH
                             }
                         }
 
+                        var newRoom = Instantiate(rooms[randomRoom].room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
+                        newRoom.UpdateRoom(board[(i + j * size.x)].status);
 
-                        var newRoom = Instantiate(rooms[randomRoom].room, new Vector3( i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
-                        newRoom.UpdateRoom(currentCell.status);
                         newRoom.name += " " + i + "-" + j;
 
-                    }
+                        // 맨 첫칸은 NPC 있어서 적 안 생기게 함.
+                        if (!rooms[randomRoom].obligatory)
+                            total_Rooms.Add(newRoom.gameObject);
+                    };
                 }
             }
-
         }
 
         void MazeGenerator()
@@ -184,7 +273,6 @@ namespace LDH
                 }
 
             }
-            GenerateDungeon();
         }
 
         List<int> CheckNeighbors(int cell)

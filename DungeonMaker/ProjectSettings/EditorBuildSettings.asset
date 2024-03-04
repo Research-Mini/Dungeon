@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/JM/Scenes/Stage_02.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/LDH/Scenes/New Scene.unity
+    path: Assets/LDH/Scenes/Stage_03.unity
     guid: 1fc90a9b34c4b8c4bb3d027d7f903795
   - enabled: 1
     path: Assets/JM/Scenes/DeadMoon.unity
