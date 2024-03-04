@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class HealthUI : MonoBehaviour
 {
     public static HealthUI instance;
-    public Slider healthSlider; 
+    public Slider healthSlider;
 
+    [HideInInspector] public bool isSelectHPUP = false;   // 다음 레벨로 오기 직전 HP 업을 선택했는지.
     void Awake()
     {
         if (instance == null)

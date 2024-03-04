@@ -47,12 +47,14 @@ namespace YGC
         public int totalEnemy = 0;
         private List<GameObject> total_Rooms = new List<GameObject>();
 
+        List<UnityEngine.AI.NavMeshAgent> agentList = new List<UnityEngine.AI.NavMeshAgent>();
+
         // Start is called before the first frame update
         void Start()
         {
             MazeGenerator();
             GenerateDungeon();
-            GenerateEnemy();
+            GenerateEnemy();            
         }
 
         // Update is called once per frame
@@ -75,8 +77,21 @@ namespace YGC
                     var newEnemy = Instantiate(enemyObj);
                     newEnemy.SetActive(true);
                     newEnemy.transform.SetParent(total_Rooms[enemyPos].transform);
+
                     newEnemy.transform.localPosition = Vector3.zero;
+
+                    // 일기토 가능하도록 적이 있는 방은 Tag를 따로 설정.
+                    total_Rooms[enemyPos].transform.tag = "EnemyRoom";
+                    agentList.Add(newEnemy.transform.GetComponent<UnityEngine.AI.NavMeshAgent>());
                 }
+            }
+        }
+
+        void StartNavMesh()
+        {
+            for(int i=0;i<agentList.Count;i++)
+            {
+                agentList[i].enabled = true;
             }
         }
 

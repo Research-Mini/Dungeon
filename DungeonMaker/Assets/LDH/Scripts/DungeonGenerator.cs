@@ -71,8 +71,9 @@ namespace LDH
                     newEnemy.SetActive(true);
                     newEnemy.transform.SetParent(total_Rooms[enemyPos].transform);
                     newEnemy.transform.localPosition = Vector3.zero;
-                    
-                    
+
+                    // 일기토 가능하도록 적이 있는 방은 Tag를 따로 설정.
+                    total_Rooms[enemyPos].transform.tag = "EnemyRoom";
                 }
             }
         }
