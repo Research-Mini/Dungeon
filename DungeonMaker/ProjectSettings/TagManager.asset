@@ -8,6 +8,7 @@ TagManager:
   - NPC
   - Excalibur
   - Aegis
+  - EnemyRoom
   layers:
   - Default
   - TransparentFX

@@ -11,8 +11,13 @@ public class SceneChanger : MonoBehaviour
         // 충돌한 객체의 태그가 "Player"인지 확인
         if (other.CompareTag("Player"))
         {
+            // 선택 팝업 띄워야 함.
+            Time.timeScale = 0f;
+
+            PlayerStats.instance.OpenPopup();
+
             // "Stage_02" 씬으로 전환
-            SceneManager.LoadScene(Scenename);
+            // SceneManager.LoadScene(Scenename);
         }
     }
 }

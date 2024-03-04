@@ -9,6 +9,8 @@ public class Character : MonoBehaviour
     public DialogController dialog;
     public bool isIllGiTo = false;  // 방에서 몬스터와 일기토 하는지 여부
 
+    Transform beforeRoom;           // 일기토 직전에 있었던 방
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public class Character : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collsion Detect");
+        // Debug.Log("Collsion Detect");
 
         if (collision.gameObject.tag == "NPC")
         {
@@ -33,24 +35,79 @@ public class Character : MonoBehaviour
             dialog.Start_Dialog(player);
         }
         else
-            ChangeLayer(collision.collider.transform.parent.parent, "MinimapVisible");
+            ChangeLayer(collision.collider.transform.parent.parent, "MinimapVisible");        
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        // if (!other.transform.parent.name.Contains("Room")) return;
+        beforeRoom = other.transform.parent;
+        Debug.Log(beforeRoom.name);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
         if (isIllGiTo)
         {
-            if (collision.collider.transform.parent.name == "Entrances")
-                TryToIllGiTo(collision.collider.transform.parent);
+            if(other.transform.parent.name == "Floor")
+                TryToIllGiTo(other.transform.parent);
+            else if(other.transform.parent.parent.name == "Floor")
+                TryToIllGiTo(other.transform.parent.parent);
         }
     }
 
     // 일기토 - 방의 문 다 막기
     public void TryToIllGiTo(Transform trans)
     {
+        Debug.Log(trans.parent.name + " / " + trans.parent.tag);
+        if (trans.parent.tag != "EnemyRoom") return;        
+
         // 지나갈 수 없음.
-        for (int i = 4; i < 8; i++)
+        for (int i = 0; i < trans.parent.GetChild(2).childCount; i++)
         {
-            trans.GetChild(2).GetChild(i).GetChild(0).GetComponent<BoxCollider>().enabled = true;
-            trans.GetChild(2).GetChild(i).GetChild(0).GetComponent<BoxCollider>().isTrigger = false;
+            if (!trans.parent.GetChild(2).GetChild(i).name.Contains("Door")) continue;
+
+            if(trans.parent.GetChild(2).GetChild(i).TryGetComponent<BoxCollider>(out BoxCollider box))
+            {
+                box.enabled = true;
+                box.isTrigger = false;
+            }
+
+            for(int j=0;j< trans.parent.GetChild(2).GetChild(i).childCount;j++)
+            {
+                if(trans.parent.GetChild(2).GetChild(i).GetChild(j).TryGetComponent<BoxCollider>(out BoxCollider boxes))
+                {
+                    boxes.enabled = true;
+                    boxes.isTrigger = false;
+                }
+            }            
         }
+
+        // if (beforeRoom == null) return;
+
+        // if (!beforeRoom.name.Contains("Room")) return;
+        if (beforeRoom.parent.childCount > 1)
+        {
+            for (int i = 0; i < beforeRoom.parent.GetChild(2).childCount; i++)
+            {
+                if (!beforeRoom.parent.GetChild(2).GetChild(i).name.Contains("Door")) continue;
+
+                if (beforeRoom.parent.GetChild(2).GetChild(i).TryGetComponent<BoxCollider>(out BoxCollider box))
+                {
+                    box.enabled = true;
+                    box.isTrigger = false;
+                }
+
+                for (int j = 0; j < beforeRoom.parent.GetChild(2).GetChild(i).childCount; j++)
+                {
+                    if (beforeRoom.parent.GetChild(2).GetChild(i).GetChild(j).TryGetComponent<BoxCollider>(out BoxCollider boxes))
+                    {
+                        boxes.enabled = true;
+                        boxes.isTrigger = false;
+                    }
+                }
+            }
+        }        
     }
 
     public void ChangeLayer(Transform trans, string name)

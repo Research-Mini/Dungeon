@@ -80,11 +80,20 @@ public class EnemyAI : MonoBehaviour
 
     void Stop()
     {
+        if (agent == null)
+            agent = GetComponent<NavMeshAgent>();
+        agent.enabled = true;
+
         agent.isStopped = true;
     }
    
     void ChasePlayer()
     {
+        if (agent == null)
+            agent = GetComponent<NavMeshAgent>();
+
+        agent.enabled = true;
+
         agent.isStopped = false;
         agent.SetDestination(player.position);
 
@@ -97,6 +106,11 @@ public class EnemyAI : MonoBehaviour
     }
     void AttackPlayer()
     {
+        if (agent == null)
+            agent = GetComponent<NavMeshAgent>();
+
+        agent.enabled = true;
+
         agent.isStopped = true;
 
         LookTo(player.position);
@@ -111,6 +125,11 @@ public class EnemyAI : MonoBehaviour
 
     void Stun()
     {
+        if (agent == null)
+            agent = GetComponent<NavMeshAgent>();
+
+        agent.enabled = true;
+
         agent.isStopped = true;
         currentState = GETHIT;
     }
