@@ -123,6 +123,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &239686104 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3352588147483137228, guid: 0ef772f0bafdc204daa7df6863d3c281,
+    type: 3}
+  m_PrefabInstance: {fileID: 539136670}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8179f06b20ba9c43a2713a723f43799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &408385261 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6842000478662904375, guid: d58f75fb113c27547a53c234ed3844ca,
@@ -226,7 +238,7 @@ PrefabInstance:
     - target: {fileID: 3352588147483137228, guid: 0ef772f0bafdc204daa7df6863d3c281,
         type: 3}
       propertyPath: isIllGiTo
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6020550196182965360, guid: 0ef772f0bafdc204daa7df6863d3c281,
         type: 3}
@@ -246,8 +258,63 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 260282724745476242, guid: 0ef772f0bafdc204daa7df6863d3c281,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 539136672}
+    - targetCorrespondingSourceObject: {fileID: 260282724745476242, guid: 0ef772f0bafdc204daa7df6863d3c281,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 539136674}
   m_SourcePrefab: {fileID: 100100000, guid: 0ef772f0bafdc204daa7df6863d3c281, type: 3}
+--- !u!1 &539136671 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 260282724745476242, guid: 0ef772f0bafdc204daa7df6863d3c281,
+    type: 3}
+  m_PrefabInstance: {fileID: 539136670}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &539136672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539136671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 492605b19be897a49b2017c3315f8a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chara: {fileID: 239686104}
+  boss: {fileID: 0}
+--- !u!54 &539136674
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539136671}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,7 +1297,7 @@ PrefabInstance:
     - target: {fileID: 2280794551259997283, guid: 8594f0b2072a146438cf9e88956a17ea,
         type: 3}
       propertyPath: Scenename
-      value: DeadMoon
+      value: Stage_02
       objectReference: {fileID: 0}
     - target: {fileID: 2280794551259997283, guid: 8594f0b2072a146438cf9e88956a17ea,
         type: 3}

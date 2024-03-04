@@ -606,6 +606,7 @@ GameObject:
   - component: {fileID: 6134145539537218455}
   - component: {fileID: 7500673664855118742}
   - component: {fileID: 3352588147483137228}
+  - component: {fileID: 7568310291831706138}
   - component: {fileID: 6020550196182965360}
   - component: {fileID: 1272667913436510083}
   - component: {fileID: 7937937974088053753}
@@ -688,6 +689,21 @@ MonoBehaviour:
   generator: {fileID: 0}
   dialog: {fileID: 0}
   isIllGiTo: 0
+--- !u!114 &7568310291831706138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2605782652448087408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d973f64c6a99a4aa51546ca04603b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oppositeLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!136 &6020550196182965360
 CapsuleCollider:
   m_ObjectHideFlags: 0
