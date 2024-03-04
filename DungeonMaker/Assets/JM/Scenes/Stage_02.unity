@@ -391,6 +391,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3385090164975216585, guid: d58f75fb113c27547a53c234ed3844ca,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 8400000, guid: 21ba342fd98dbe2478ff247e41685338, type: 2}
     - target: {fileID: 4400910023865662047, guid: d58f75fb113c27547a53c234ed3844ca,
         type: 3}
       propertyPath: m_Pivot.x
@@ -490,6 +495,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4807082347977401284, guid: d58f75fb113c27547a53c234ed3844ca,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 426
+      objectReference: {fileID: 0}
+    - target: {fileID: 4807082347977401284, guid: d58f75fb113c27547a53c234ed3844ca,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 426
+      objectReference: {fileID: 0}
+    - target: {fileID: 4807082347977401284, guid: d58f75fb113c27547a53c234ed3844ca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6842000478662904375, guid: d58f75fb113c27547a53c234ed3844ca,
         type: 3}
@@ -622,13 +642,13 @@ Camera:
   far clip plane: 1000
   field of view: 124
   orthographic: 1
-  orthographic size: 36
+  orthographic size: 100
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 384
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 10c369af599f77a4983f3a97e5f8a2e8, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 21ba342fd98dbe2478ff247e41685338, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -647,7 +667,7 @@ Transform:
   m_GameObject: {fileID: 1214562295}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 27.5, y: 20, z: -30}
+  m_LocalPosition: {x: 90, y: 20, z: -90}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
