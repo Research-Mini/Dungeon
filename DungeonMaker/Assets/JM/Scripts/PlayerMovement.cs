@@ -41,6 +41,7 @@ namespace jm
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+                Debug.Log("jump!");
             }
         }
 

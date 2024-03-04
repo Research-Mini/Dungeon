@@ -9,6 +9,7 @@ TagManager:
   - Excalibur
   - Aegis
   - EnemyRoom
+  - PlayerBody
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - Wall
   - Invisible
   - MinimapVisible
-  - 
-  - 
+  - Boss_AT
+  - Boss_HP
   - 
   - 
   - 

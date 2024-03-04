@@ -29,7 +29,7 @@ public class PlayerStats : MonoBehaviour
     }
     void Start()
     {
-        StartCoroutine(DecreaseHealthOverTime());
+        //StartCoroutine(DecreaseHealthOverTime());
         HealthUI.instance.SetMaxHealth(maxHealth); 
     }
 
@@ -46,6 +46,7 @@ public class PlayerStats : MonoBehaviour
     {
         int damageTaken = damage - defensePower;
         currentHealth -= damageTaken > 0 ? damageTaken : 0;
+        Debug.Log("Playerdamaged");
         if (currentHealth <= 0)
         {
             Die();
