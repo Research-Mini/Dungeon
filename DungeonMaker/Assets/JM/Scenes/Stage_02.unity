@@ -710,7 +710,7 @@ MonoBehaviour:
     maxPosition: {x: 0, y: 0}
     obligatory: 1
   - room: {fileID: 4902167292745504913, guid: 43e0a206391933c4f89af4a682d239bc, type: 3}
-    minPosition: {x: 0, y: 3}
+    minPosition: {x: 2, y: 2}
     maxPosition: {x: 3, y: 6}
     obligatory: 0
   - room: {fileID: 4902167292745504913, guid: 720e36a89c299004d9ab807ff629cc14, type: 3}

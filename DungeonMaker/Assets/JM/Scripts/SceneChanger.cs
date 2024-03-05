@@ -11,6 +11,7 @@ public class SceneChanger : MonoBehaviour
         // 충돌한 객체의 태그가 "Player"인지 확인
         if (other.CompareTag("Player"))
         {
+            Debug.Log("SceneChanger");
             // 선택 팝업 띄워야 함.
             Time.timeScale = 0f;
 

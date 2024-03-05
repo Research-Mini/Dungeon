@@ -970,7 +970,7 @@ MonoBehaviour:
   currentState: 
   awakeSound: {fileID: 0}
   player: {fileID: 0}
-  playerAttackDistance: 3.5
+  playerAttackDistance: 2
   AttackRate: 0
 --- !u!195 &4835580456975742243
 NavMeshAgent:

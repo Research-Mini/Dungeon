@@ -82,7 +82,7 @@ namespace LDH
                 }
             }
         }
-        /*
+        
         void GenerateDungeon()
         {
             for (int i = 0; i < size.x; i++)
@@ -139,8 +139,8 @@ namespace LDH
                 }
             }
         }
-        */
-
+        
+        /*
         void GenerateDungeon()
         {
             for (int i = 0; i < size.x; i++)
@@ -193,7 +193,7 @@ namespace LDH
                 }
             }
         }
-
+        */
         void MazeGenerator()
         {
             board = new List<Cell>();

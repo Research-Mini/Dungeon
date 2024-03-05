@@ -133,6 +133,7 @@ public class PlayerStats : MonoBehaviour
             SelectAttack();
 
         // "Stage_02" 씬으로 전환
+        Debug.Log("Selectbutton");
         SceneManager.LoadScene(Scenename);
     }
 
