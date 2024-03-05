@@ -164,6 +164,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2443476436996755519, guid: 185c82555c45cb14c8880261303c07dd,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2443476436996755519, guid: 185c82555c45cb14c8880261303c07dd,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 3569263949914610063, guid: 185c82555c45cb14c8880261303c07dd,
         type: 3}
       propertyPath: generator
@@ -465,6 +475,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280794551259997283, guid: 8594f0b2072a146438cf9e88956a17ea,
+        type: 3}
+      propertyPath: Scenename
+      value: DeadMoon
       objectReference: {fileID: 0}
     - target: {fileID: 2280794551259997283, guid: 8594f0b2072a146438cf9e88956a17ea,
         type: 3}
@@ -854,7 +869,7 @@ MonoBehaviour:
     minPosition: {x: 9, y: 9}
     maxPosition: {x: 10, y: 10}
     obligatory: 0
-  offset: {x: 14.5, y: 14.5}
+  offset: {x: 14.6, y: 14.6}
   doorColliders: []
   enemyObj: {fileID: 8079888115774039932, guid: 57c7d1b174033f94a9fcc402ef0744f6,
     type: 3}

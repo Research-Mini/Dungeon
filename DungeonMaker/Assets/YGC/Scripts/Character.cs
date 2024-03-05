@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,15 +60,16 @@ public class Character : MonoBehaviour
             if (other.name.Contains("Enemy")) return;
 
             // Debug.Log(other.transform.parent.name + " / " + other.transform.parent.tag);
-            if (other.transform.parent.name.Contains("Room"))
+            if (other.transform.name.Contains("Room"))
             {                
-                TryToIllGiTo(other.transform.parent);
+                TryToIllGiTo(other.transform);
             }
-            else if (other.transform.parent.parent.name.Contains("Room"))
+            /*else if (other.transform.name.Contains("Room"))
             {
                 // Debug.Log(other.name);
                 TryToIllGiTo(other.transform.parent.parent);
             }
+            */
         }
     }
 
@@ -77,8 +77,8 @@ public class Character : MonoBehaviour
     public void TryToIllGiTo(Transform trans)
     {
         // Debug.Log(trans.name + " / " + trans.tag);
-        if (trans.tag != "EnemyRoom") return;        
-
+        if (trans.tag != "EnemyRoom") return;
+        Debug.Log("illgi");
         // 지나갈 수 없음.
         for (int i = 0; i < trans.GetChild(2).childCount; i++)
         {
@@ -131,6 +131,8 @@ public class Character : MonoBehaviour
                         boxes.isTrigger = false;
                     }
                 }
+                
+                
             }
         }        
     }
