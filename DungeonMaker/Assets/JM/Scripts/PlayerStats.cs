@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats instance;
-    public string Scenename;
 
     public int maxHealth = 100;
     public int currentHealth = 100;
     public int attackPower = 10;
     public int defensePower = 5;
+
+    public int sceneNum = 0;        // 씬 넘어갈 때 사용.
+    private string[] sceneArr = { "Stage_02", "Stage_03", "DeadMoon" }; // 넘어갈 씬들.
 
     private GameObject statPopup;
     private GameObject selectPopup;
@@ -65,9 +67,30 @@ public class PlayerStats : MonoBehaviour
 
     private void Die()
     {
+        HealthUI.instance.UpdateHealth(0);
         Debug.Log("Player Died");
-        
+
+        StartCoroutine(OpenDiePopup());
     }
+
+    IEnumerator OpenDiePopup()
+    {
+        GameObject Player = GameObject.FindWithTag("Player");
+
+        Player.GetComponent<jm.PlayerController>().speed = 0;
+        Player.GetComponent<jm.PlayerController>().isDie = true;
+
+        Animator chara_Ani = GameObject.FindWithTag("Player").GetComponent<Animator>();
+        chara_Ani.Play("Die");        
+
+        GameObject DiePopup = GameObject.Find("Canvas").transform.GetChild(5).gameObject;
+        DiePopup.SetActive(true);
+
+        yield return new WaitForSeconds(4f);
+
+        SceneManager.LoadScene("MainScene");
+    }
+
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -134,7 +157,7 @@ public class PlayerStats : MonoBehaviour
 
         // "Stage_02" 씬으로 전환
         Debug.Log("Selectbutton");
-        SceneManager.LoadScene(Scenename);
+        SceneManager.LoadScene(sceneArr[sceneNum++]);
     }
 
     public void SelectHP()
@@ -153,7 +176,7 @@ public class PlayerStats : MonoBehaviour
         player.rotationSpeed = 0;
 
         statPopup.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         statPopup.SetActive(false);
 
         player.speed = 5;
