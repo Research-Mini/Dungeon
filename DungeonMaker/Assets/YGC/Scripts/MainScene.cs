@@ -7,6 +7,12 @@ public class MainScene : MonoBehaviour
 {
     public GameObject HowToPlayPopup;
 
+    private void Awake()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void Start_Game()
     {
         SceneManager.LoadScene(1);

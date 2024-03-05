@@ -1,9 +1,13 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Character : MonoBehaviour
 {
     public Transform generator;
+    public AudioSource monsterDeathSound;
+    public AudioSource dragonDeathSound;
 
     public DialogController dialog;
     public bool isIllGiTo = false;  // 방에서 몬스터와 일기토 하는지 여부
@@ -71,6 +75,21 @@ public class Character : MonoBehaviour
             }
             */
         }
+    }
+
+    public void WinGame()
+    {
+        // dragonDeathSound.Play();
+        StartCoroutine(CO_WinGame());
+    }
+
+    IEnumerator CO_WinGame()
+    {
+        GameObject WinPopup = GameObject.Find("Canvas").transform.GetChild(6).gameObject;
+        WinPopup.SetActive(true);
+
+        yield return new WaitForSeconds(4f);
+        SceneManager.LoadScene("MainScene");
     }
 
     // 일기토 - 방의 문 다 막기

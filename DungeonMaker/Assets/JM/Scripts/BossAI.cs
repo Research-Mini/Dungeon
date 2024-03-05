@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class BossAI : MonoBehaviour
 {
+    public AudioSource sound1;
+    public AudioSource sound2;
+
     public NavMeshAgent agent;
     public Animator animator;
     public Transform player;
@@ -42,10 +45,12 @@ public class BossAI : MonoBehaviour
             {
                 if ((health / maxHealth) * 100f > healthPercentageForClawAttack)
                 {
+                    sound1.Play();
                     ChangeState(ATTACK_01);
                 }
                 else
                 {
+                    sound2.Play();
                     ChangeState(ATTACK_02);
                 }
             }

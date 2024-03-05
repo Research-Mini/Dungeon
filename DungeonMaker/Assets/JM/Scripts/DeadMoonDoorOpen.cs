@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DeadMoonDoorOpen : MonoBehaviour
 {
+    public AudioSource OpenSound;
     public GameObject doorLeft;
     public GameObject doorRight;
     public float rotateAmount = 90f;
@@ -16,6 +17,7 @@ public class DeadMoonDoorOpen : MonoBehaviour
         
         if (other.CompareTag("Player") && !isDoorOpen)
         {
+            OpenSound.Play();
             StartCoroutine(RotateDoor(doorLeft, -rotateAmount)); 
             StartCoroutine(RotateDoor(doorRight, rotateAmount)); 
             isDoorOpen = true; 
