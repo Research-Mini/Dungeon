@@ -18,7 +18,7 @@ public class SceneChanger : MonoBehaviour
             PlayerStats.instance.OpenPopup();
 
             // "Stage_02" 씬으로 전환
-            // SceneManager.LoadScene(Scenename);
+            SceneManager.LoadScene(Scenename);
         }
     }
 }
