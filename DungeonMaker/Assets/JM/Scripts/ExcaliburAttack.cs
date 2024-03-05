@@ -93,7 +93,7 @@ public class ExcaliburAttack : MonoBehaviour
                     else
                     {
                         bool isMonsterDead = monsterHP.TakeDamage(PlayerStats.instance.attackPower);
-
+                        Debug.Log(isMonsterDead);
                         // 일기토 중이었으면 방의 일기토 설정 해제.
                         if (isMonsterDead)
                         {
