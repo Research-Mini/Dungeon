@@ -811,9 +811,9 @@ MonoBehaviour:
     maxPosition: {x: 4, y: 4}
     obligatory: 0
   - room: {fileID: 8998051165614161617, guid: 7a643c9f555824b49b4472735af36dda, type: 3}
-    minPosition: {x: 2, y: 2}
-    maxPosition: {x: 5, y: 5}
-    obligatory: 0
+    minPosition: {x: 5, y: 5}
+    maxPosition: {x: 6, y: 6}
+    obligatory: 1
   offset: {x: 6, y: 6}
   enemyObj: {fileID: 6632196935520816322, guid: c9b737cc041a87249adad5576601dc72,
     type: 3}
@@ -1105,6 +1105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 0}
+  monsterDeathSound: {fileID: 0}
+  dragonDeathSound: {fileID: 0}
   dialog: {fileID: 0}
   isIllGiTo: 0
 --- !u!54 &2035693237
